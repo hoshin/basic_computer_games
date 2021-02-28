@@ -1,9 +1,11 @@
 const prompt = require('prompt');
 const cards = [ 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13 ]
 
+prompt.message = ''
+prompt.delimiter = ''
 
 let playerMoney = 100;
-let bet = 0, firatCard = -1, secondCard = -1, availableCards = [];
+let firstCard = -1, secondCard = -1, availableCards = [];
 
 const bootupPrompt = () => {
     console.log('          ACEY DUCEY CARD GAME');
@@ -20,7 +22,6 @@ const bootupPrompt = () => {
     prompt.start();
 }
 
-
 const translateCardNumberToCardName = cardNumber => {
     switch(cardNumber){
         case 11: return 'JACK'
@@ -30,9 +31,17 @@ const translateCardNumberToCardName = cardNumber => {
         default: return `${cardNumber}`
     }
 }
-
+const PROMPT_SCHEMA = {
+    properties: {
+        bet: {
+            pattern: /^[0-9]+$/,
+            message: 'Only integers allowed!',
+            required: true
+        }
+    }
+}
 const askForBet = async () => {
-    return prompt.get(['bet'])
+    return prompt.get(PROMPT_SCHEMA)
 }
 
 const dealCards = () => {
@@ -45,8 +54,8 @@ const dealCards = () => {
 
 
     console.log('HERE ARE YOUR NEXT TWO CARDS')
-    console.log(firstCard)
-    console.log(secondCard)
+    console.log(translateCardNumberToCardName(firstCard))
+    console.log(translateCardNumberToCardName(secondCard))
 }
 
 const dealSingleCard = () => {
@@ -56,7 +65,7 @@ const dealSingleCard = () => {
 
 const checkIfPlayerCardIsInInterval = (highCard, lowCard, playersCard) => {
     if(playersCard < highCard && playersCard > lowCard){
-        console.log('YOU WIN1!!!')
+        console.log('YOU WIN!!!')
     } else {
         console.log('SORRY, YOU LOSE')
     }
@@ -65,7 +74,7 @@ const checkIfPlayerCardIsInInterval = (highCard, lowCard, playersCard) => {
 bootupPrompt();
 dealCards();
 askForBet().then(result => {
-    const bet = Number.parse(result.bet)
+    const bet = parseInt(result.bet, 10)
     if(bet === 0){
         console.log('CHICKEN!!')
     } else if(bet > playerMoney) {
