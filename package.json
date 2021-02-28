@@ -13,6 +13,7 @@
   },
   "scripts": {
     "start": "node index.js",
+    "startgame:acey_ducey": "node games/acey_ducey/game",
     "test": "mocha"
   },
   "repository": {
