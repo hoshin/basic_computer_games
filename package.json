@@ -1,0 +1,32 @@
+{
+  "name": "basic-computer-games",
+  "version": "0.0.1",
+  "description": "We pick games from the \"Basic computer games\" book (David H. Ahl, Workman publishing, 1978) and try to re-implement them in JS =)",
+  "main": "index.js",
+  "dependencies": {
+    "chai": "^4.2.0",
+    "prompt": "^1.1.0",
+    "sinon": "^9.2.4"
+  },
+  "devDependencies": {
+    "mocha": "^8.2.1"
+  },
+  "scripts": {
+    "test": "mocha"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/hoshin/basic_computer_games.git"
+  },
+  "keywords": [
+    "basic",
+    "games",
+    "port"
+  ],
+  "author": "Martin Bahier",
+  "license": "CC-BY-NC-4.0",
+  "bugs": {
+    "url": "https://github.com/hoshin/basic_computer_games/issues"
+  },
+  "homepage": "https://github.com/hoshin/basic_computer_games#readme"
+}
